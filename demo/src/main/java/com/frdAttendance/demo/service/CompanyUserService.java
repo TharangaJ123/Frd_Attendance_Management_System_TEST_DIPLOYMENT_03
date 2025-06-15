@@ -36,31 +36,21 @@ public class CompanyUserService {
         companyUser.setPassword(companyUserDTO.getPassword());
         companyUser.setAddress(companyUserDTO.getAddress());
         
-        // Set company - handle companyId as String
-        try {
-            Long companyId = Long.parseLong(companyUserDTO.getCompanyId());
-            securityCompanyRepository.findById(companyId)
-                .ifPresent(companyUser::setCompany);
-        } catch (NumberFormatException e) {
-            throw new RuntimeException("Invalid company ID format");
-        }
+        // Set company
+        securityCompanyRepository.findById(companyUserDTO.getCompanyId())
+            .ifPresent(companyUser::setCompany);
 
         companyUser = companyUserRepository.save(companyUser);
 
         if(companyUser.getId() == 0) {
             throw new RuntimeException("Company User id is null");
         } else {
-            try {
-                emailService.sendUserCreationEmail(
-                    companyUser.getEmail(),
-                    companyUser.getEmail(),
-                    companyUser.getName(),
-                    companyUser.getPassword()
-                );
-            } catch (Exception e) {
-                // Log the error but don't fail the user creation
-                System.err.println("Failed to send email: " + e.getMessage());
-            }
+            emailService.sendUserCreationEmail(
+                companyUser.getEmail(),
+                companyUser.getEmail(),
+                companyUser.getName(),
+                companyUser.getPassword()
+            );
             return ResponseEntity.ok(companyUser);
         }
     }
