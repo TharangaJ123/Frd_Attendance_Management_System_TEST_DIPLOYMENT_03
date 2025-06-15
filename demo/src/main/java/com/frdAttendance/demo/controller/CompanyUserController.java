@@ -27,7 +27,7 @@ public class CompanyUserController {
     @Autowired
     private CompanyUserService companyUserService;
 
-    @PostMapping("/save")
+    @PostMapping(value = "/save", consumes = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<CompanyUsers> saveCompanyUser(@RequestBody CompanyUserDTO companyUserDTO) {
         return companyUserService.saveCompanyUser(companyUserDTO);
     }

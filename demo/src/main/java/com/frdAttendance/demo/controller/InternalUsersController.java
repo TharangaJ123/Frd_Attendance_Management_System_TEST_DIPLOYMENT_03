@@ -7,6 +7,7 @@ import com.frdAttendance.demo.service.InternalUsersService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -23,7 +24,7 @@ public class InternalUsersController {
     private InternalUsersService internalUsersService;
 
     // Save a new system user
-    @PostMapping("/save")
+    @PostMapping(value="/save",consumes = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<InternalUsers> saveInternalUser(@RequestBody InternalUsers internalUser){
         return internalUsersService.saveInternalUser(internalUser);
     }

@@ -7,6 +7,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.HttpStatusCode;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -23,7 +24,7 @@ public class AttendanceController {
     @Autowired
     private AttendanceService attendanceService;
 
-    @PostMapping("/saveAttendance")
+    @PostMapping(value = "/saveAttendance", consumes = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<List<Attendance>> saveAttendance(@RequestBody List<Attendance> attendances) {
         List<Attendance> savedAttendances = attendanceService.saveAllAttendances(attendances);
         return ResponseEntity.ok(savedAttendances);

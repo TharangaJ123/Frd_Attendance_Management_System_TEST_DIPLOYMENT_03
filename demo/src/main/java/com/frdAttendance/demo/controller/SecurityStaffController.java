@@ -5,6 +5,7 @@ import com.frdAttendance.demo.model.SecurityStaff;
 import com.frdAttendance.demo.service.SecurityStaffService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -19,7 +20,7 @@ public class SecurityStaffController {
     @Autowired
     private SecurityStaffService securityStaffService;
 
-    @PostMapping("/add")
+    @PostMapping(value = "/add", consumes = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<?> addSecurityStaff(@RequestBody SecurityStaff securityStaff) {
         return securityStaffService.addSecurityStaff(securityStaff);
     }

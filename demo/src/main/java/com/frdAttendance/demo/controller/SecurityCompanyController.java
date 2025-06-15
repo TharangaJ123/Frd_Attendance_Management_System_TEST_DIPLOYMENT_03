@@ -8,6 +8,7 @@ import com.frdAttendance.demo.service.SecurityCompanyService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Repository;
 import org.springframework.web.bind.annotation.*;
@@ -25,7 +26,7 @@ public class SecurityCompanyController {
     @Autowired
     private SecurityCompanyService securityCompanyService;
 
-    @PostMapping("/save")
+    @PostMapping(value = "/save", consumes = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<SecurityCompany> onboardCompany(@RequestBody SecurityCompany company) {
         return companyService.onboardCompany(company);
     }
