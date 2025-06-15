@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.*;
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("/api/assignPatrolOfficer")
-@CrossOrigin(origins = "http://localhost:5173")
+@CrossOrigin(origins = "https://securityattendancesystemfrontend-production.up.railway.app/")
 public class ApprovalOfficerPatrolLeaderController {
 
     @Autowired

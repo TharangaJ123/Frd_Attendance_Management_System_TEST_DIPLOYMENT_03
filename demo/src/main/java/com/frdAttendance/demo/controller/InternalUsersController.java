@@ -16,7 +16,7 @@ import java.util.Optional;
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("/api/internalUser")
-@CrossOrigin(origins = "http://localhost:5173")
+@CrossOrigin(origins = "https://securityattendancesystemfrontend-production.up.railway.app/")
 public class InternalUsersController {
 
     @Autowired

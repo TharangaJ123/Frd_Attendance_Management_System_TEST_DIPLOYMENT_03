@@ -13,7 +13,7 @@ import java.util.Optional;
 
 @RestController
 @RequestMapping("/api/security-staff")
-@CrossOrigin(origins = "http://localhost:5173")
+@CrossOrigin(origins = "https://securityattendancesystemfrontend-production.up.railway.app/")
 public class SecurityStaffController {
 
     @Autowired
