@@ -18,7 +18,7 @@ import java.util.Optional;
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("/api/attendance")
-@CrossOrigin(origins = "https://securityattendancesystemfrontend-production.up.railway.app/")
+@CrossOrigin(origins = "https://securityattendancesystemfrontend-production.up.railway.app")
 public class AttendanceController {
 
     @Autowired

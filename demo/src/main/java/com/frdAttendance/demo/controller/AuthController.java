@@ -17,7 +17,7 @@ import java.util.Optional;
 
 @RestController
 @RequestMapping("/api/user")
-@CrossOrigin(origins = "https://securityattendancesystemfrontend-production.up.railway.app/")
+@CrossOrigin(origins = "https://securityattendancesystemfrontend-production.up.railway.app")
 public class AuthController {
     @Autowired
     private InternalUsersRepository userRepository;

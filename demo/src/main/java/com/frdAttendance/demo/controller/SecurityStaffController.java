@@ -14,7 +14,7 @@ import java.util.Optional;
 
 @RestController
 @RequestMapping("/api/security-staff")
-@CrossOrigin(origins = "https://securityattendancesystemfrontend-production.up.railway.app/")
+@CrossOrigin(origins = "https://securityattendancesystemfrontend-production.up.railway.app")
 public class SecurityStaffController {
 
     @Autowired
