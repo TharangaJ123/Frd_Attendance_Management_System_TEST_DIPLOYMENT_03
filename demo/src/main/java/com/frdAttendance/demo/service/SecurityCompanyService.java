@@ -1,7 +1,9 @@
 package com.frdAttendance.demo.service;
 
-import com.frdAttendance.demo.model.CompanyUsers;
+import com.frdAttendance.demo.dto.SecurityCompanyDTO;
+import com.frdAttendance.demo.model.InternalUsers;
 import com.frdAttendance.demo.model.SecurityCompany;
+import com.frdAttendance.demo.model.SystemUsers;
 import com.frdAttendance.demo.repository.SecurityCompanyRepository;
 import com.frdAttendance.demo.repository.SecurityStaffRepository;
 import lombok.RequiredArgsConstructor;
@@ -22,14 +24,15 @@ public class SecurityCompanyService {
     @Autowired
     private SecurityCompanyRepository securityCompanyRepository;
 
-    public ResponseEntity<SecurityCompany> onboardCompany(SecurityCompany securityCompany) {
-        securityCompany = repository.save(securityCompany);
+    public ResponseEntity<SecurityCompany> onboardCompany(SecurityCompanyDTO securityCompanyDto) {
+        SecurityCompany company = new SecurityCompany();
+        company.setCompanyName(securityCompanyDto.getCompanyName());
+        company.setCompanyAddress(securityCompanyDto.getCompanyAddress());
+        company.setContactNumber(securityCompanyDto.getContactNumber());
 
-        if(securityCompany.getId()==null){
-            throw new RuntimeException("Security company id is null");
-        }else{
-            return ResponseEntity.ok(securityCompany);
-        }
+        // Save and return
+        SecurityCompany savedCompany = securityCompanyRepository.save(company);
+        return ResponseEntity.ok(savedCompany);
     }
 
     public List<SecurityCompany> getAllCompanies() {

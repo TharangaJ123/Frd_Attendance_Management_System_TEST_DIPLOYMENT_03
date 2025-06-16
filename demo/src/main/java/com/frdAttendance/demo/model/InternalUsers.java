@@ -75,4 +75,23 @@ public class InternalUsers {
         return -99;
     }
 
+    public void setUserId(String userId) {
+        this.userId = userId;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public void setContact(String contact) {
+        this.contact = contact;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public void setSystemUser(SystemUsers systemUser) {
+        this.systemUser = systemUser;
+    }
 }

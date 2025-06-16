@@ -1,6 +1,7 @@
 package com.frdAttendance.demo.controller;
 
 
+import com.frdAttendance.demo.dto.SecurityCompanyDTO;
 import com.frdAttendance.demo.model.CompanyUsers;
 import com.frdAttendance.demo.model.InternalUsers;
 import com.frdAttendance.demo.model.SecurityCompany;
@@ -27,7 +28,7 @@ public class SecurityCompanyController {
     private SecurityCompanyService securityCompanyService;
 
     @PostMapping(value = "/save", consumes = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<SecurityCompany> onboardCompany(@RequestBody SecurityCompany company) {
+    public ResponseEntity<SecurityCompany> onboardCompany(@RequestBody SecurityCompanyDTO company) {
         return companyService.onboardCompany(company);
     }
 

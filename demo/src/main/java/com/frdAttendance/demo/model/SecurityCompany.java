@@ -59,4 +59,24 @@ public class SecurityCompany {
     public String getContactNumber(){
         return contactNumber;
     }
+
+    public void setId(String id) {
+        this.id = id;
+    }
+
+    public void setCompanyName(String companyName) {
+        this.companyName = companyName;
+    }
+
+    public void setCompanyAddress(String companyAddress) {
+        this.companyAddress = companyAddress;
+    }
+
+    public void setContactNumber(String contactNumber) {
+        this.contactNumber = contactNumber;
+    }
+
+    public void setUsers(List<CompanyUsers> users) {
+        this.users = users;
+    }
 }

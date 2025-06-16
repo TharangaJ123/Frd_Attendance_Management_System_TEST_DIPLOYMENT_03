@@ -5,12 +5,32 @@ import com.frdAttendance.demo.model.CompanyUsers;
 import java.util.List;
 
 public class SecurityCompanyDTO {
-    private String id;
     private String companyName;
     private String companyAddress;
     private String contactNumber;
-    private List<CompanyUsers> users; // Optional: Include users if needed
 
-    // Getters and Setters
+    public String getCompanyName() {
+        return companyName;
+    }
+
+    public String getCompanyAddress() {
+        return companyAddress;
+    }
+
+    public String getContactNumber() {
+        return contactNumber;
+    }
+
+    public void setCompanyName(String companyName) {
+        this.companyName = companyName;
+    }
+
+    public void setCompanyAddress(String companyAddress) {
+        this.companyAddress = companyAddress;
+    }
+
+    public void setContactNumber(String contactNumber) {
+        this.contactNumber = contactNumber;
+    }
 }
 
