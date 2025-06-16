@@ -1,5 +1,6 @@
 package com.frdAttendance.demo.controller;
 
+import com.frdAttendance.demo.dto.InternalUsersDTO;
 import com.frdAttendance.demo.dto.LoginRequest;
 import com.frdAttendance.demo.model.CompanyUsers;
 import com.frdAttendance.demo.model.InternalUsers;
@@ -24,9 +25,9 @@ public class InternalUsersController {
     private InternalUsersService internalUsersService;
 
     // Save a new system user
-    @PostMapping(value="/save",consumes = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<InternalUsers> saveInternalUser(@RequestBody InternalUsers internalUser){
-        return internalUsersService.saveInternalUser(internalUser);
+    @PostMapping(value="/save", consumes = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<InternalUsers> saveInternalUser(@RequestBody InternalUsersDTO internalUserDTO) {
+        return internalUsersService.saveInternalUser(internalUserDTO);
     }
 
 //    @PostMapping("/login")

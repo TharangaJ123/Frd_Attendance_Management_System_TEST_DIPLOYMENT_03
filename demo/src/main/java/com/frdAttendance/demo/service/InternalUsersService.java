@@ -1,5 +1,6 @@
 package com.frdAttendance.demo.service;
 
+import com.frdAttendance.demo.dto.InternalUsersDTO;
 import com.frdAttendance.demo.model.InternalUsers;
 import com.frdAttendance.demo.model.PasswordResetToken;
 import com.frdAttendance.demo.model.SystemUsers;
@@ -15,7 +16,6 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
-import java.util.UUID;
 
 @Service
 @RequiredArgsConstructor
@@ -36,23 +36,18 @@ public class InternalUsersService {
     private PasswordResetTokenRepository passwordResetTokenRepository;
 
 
-    public ResponseEntity<InternalUsers> saveInternalUser(InternalUsers internalUser) {
-        internalUser = internalUsersRepository.save(internalUser);
+    public ResponseEntity<InternalUsers> saveInternalUser(InternalUsersDTO internalUserDTO) {
+        // Convert DTO to entity
+        InternalUsers internalUser = new InternalUsers();
+        internalUser.setUserId(internalUserDTO.getUserId());
+        internalUser.setName(internalUserDTO.getName());
+        internalUser.setContact(internalUserDTO.getContact());
+        internalUser.setEmail(internalUserDTO.getEmail());
+        internalUser.setPassword(internalUserDTO.getPassword());
 
-        if (internalUser.getUserId()==null){
-            throw new RuntimeException("internal User id is null");
-        }else{
-            // Send the email
-            emailService.sendUserCreationEmail(
-                    internalUser.getEmail(),
-                    internalUser.getUserId(),
-                    internalUser.getPassword(),
-                    internalUser.getName()
-
-            );
-            return ResponseEntity.ok(internalUser);
-
-        }
+        // Save and return
+        InternalUsers savedUser = internalUsersRepository.save(internalUser);
+        return ResponseEntity.ok(savedUser);
     }
 
     public boolean login(String userId, String password) {
