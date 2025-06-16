@@ -6,6 +6,7 @@ import com.frdAttendance.demo.model.PasswordResetToken;
 import com.frdAttendance.demo.model.SystemUsers;
 import com.frdAttendance.demo.repository.InternalUsersRepository;
 import com.frdAttendance.demo.repository.PasswordResetTokenRepository;
+import com.frdAttendance.demo.repository.SystemUserRepository;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import lombok.Setter;
@@ -35,6 +36,9 @@ public class InternalUsersService {
     @Autowired
     private PasswordResetTokenRepository passwordResetTokenRepository;
 
+    @Autowired
+    private SystemUserRepository systemUsersRepository;
+
 
     public ResponseEntity<InternalUsers> saveInternalUser(InternalUsersDTO internalUserDTO) {
         // Convert DTO to entity
@@ -44,6 +48,11 @@ public class InternalUsersService {
         internalUser.setContact(internalUserDTO.getContact());
         internalUser.setEmail(internalUserDTO.getEmail());
         internalUser.setPassword(internalUserDTO.getPassword());
+
+        // Find and set the SystemUsers entity
+        SystemUsers systemUser = systemUsersRepository.findById(internalUserDTO.getSystemUser().getEmpId())
+                .orElseThrow(() -> new RuntimeException("System user not found"));
+        internalUser.setSystemUser(systemUser);
 
         // Save and return
         InternalUsers savedUser = internalUsersRepository.save(internalUser);
